@@ -121,68 +121,79 @@ const Hero = () => {
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-stretch overflow-hidden">
-      {/* Left Content */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 lg:px-24 py-32 z-10">
-        <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8 }}
-        >
-          <span className="text-[10px] uppercase tracking-[0.4em] text-bone/50 block mb-6">Winter Drop 2024 // Noir Series</span>
-          <h2 className="text-7xl lg:text-9xl leading-[0.85] font-serif mb-10 tracking-tighter">
-            Shadow<br/><span className="italic font-light text-stroke">Anatomy.</span>
-          </h2>
-          <p className="text-sm text-bone/60 leading-relaxed max-w-sm mb-12 uppercase tracking-widest font-light">
-            Minimalist silhouettes crafted for the modern ascetic. Premium heavyweight materials, printed in limited editions.
-          </p>
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-bone text-noir px-12 py-5 text-xs uppercase tracking-widest font-bold hover:bg-white/90 transition-colors">
-              Shop the Drop
-            </button>
-            <button className="border border-white/20 px-12 py-5 text-xs uppercase tracking-widest font-bold hover:bg-white/10 transition-colors">
-              View Lookbook
-            </button>
-          </div>
-        </motion.div>
-      </div>
+    <section ref={containerRef} className="relative min-h-screen flex items-center pt-24 overflow-hidden">
+      <div className="container mx-auto px-12 grid grid-cols-12 gap-8 z-10">
+        {/* Editorial Text Block */}
+        <div className="col-span-12 lg:col-span-7 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="flex items-center space-x-4 mb-8">
+              <span className="w-12 h-[1px] bg-white/20"></span>
+              <span className="text-[10px] uppercase tracking-[0.4em] text-bone/40 font-bold">Volume 02 // Issue 01</span>
+            </div>
+            
+            <h2 className="text-[14vw] lg:text-[10vw] leading-[0.8] font-serif tracking-tighter mb-12">
+              BEYOND <br />
+              <span className="italic font-light text-stroke ml-[10%]">THE VOID.</span>
+            </h2>
 
-      {/* Right Product Showcase */}
-      <div className="hidden lg:flex w-1/2 relative items-center justify-center p-12 bg-onyx/30">
-        <motion.div 
-          style={{ y }}
-          className="relative z-10 w-[420px] h-[560px] bg-onyx border border-white/10 flex items-center justify-center overflow-hidden group shadow-2xl"
-        >
-          <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
-          <div className="w-full h-full relative">
+            <div className="flex flex-col md:flex-row items-start md:items-center space-y-8 md:space-y-0 md:space-x-12">
+              <p className="text-[11px] text-bone/50 leading-relaxed max-w-[280px] uppercase tracking-[0.2em] font-light">
+                An exploration of minimalist silhouettes and architectural shadow. Engineered for the contemporary explorer.
+              </p>
+              
+              <div className="flex space-x-6">
+                <button className="brutalist-border px-8 py-4 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white hover:text-black transition-all">
+                  Shop Drop
+                </button>
+                <button className="flex items-center space-x-3 group py-4">
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold border-b border-white/20 group-hover:border-white transition-all pb-1">Archive</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Asymmetric Image Block */}
+        <div className="col-span-12 lg:col-span-5 relative mt-12 lg:mt-0">
+          <motion.div 
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 brutalist-border p-4 bg-onyx/20 backdrop-blur-sm"
+          >
             <img 
               src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=1200" 
-              alt="Featured" 
-              className="w-full h-full object-cover grayscale opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-1000"
+              alt="Editorial" 
+              className="w-full aspect-[4/5] object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-1000"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute top-8 right-8 flex flex-col items-end space-y-2">
-              <span className="text-xs font-serif italic">01 // 04</span>
-              <span className="text-[10px] uppercase tracking-widest text-bone/40">No. 0842-SHD</span>
+            
+            <div className="absolute top-0 right-0 bg-bone text-noir px-4 py-2 text-[10px] font-bold uppercase tracking-widest translate-x-4 -translate-y-4 shadow-xl">
+              N° 24.01
             </div>
-            <div className="absolute bottom-8 left-8">
-              <div className="text-sm font-medium tracking-widest">ARCHITECT HOODIE</div>
-              <div className="text-xs text-bone/50 italic font-serif">$85.00 USD</div>
-            </div>
+          </motion.div>
+          
+          <div className="absolute -bottom-10 -left-10 text-[120px] font-serif text-white/5 select-none pointer-events-none italic">
+            UMBRA
           </div>
-        </motion.div>
-        
-        {/* Decorative Lines */}
-        <div className="absolute bottom-24 right-24 w-32 h-[1px] bg-white/10"></div>
-        <div className="absolute bottom-24 right-24 h-32 w-[1px] bg-white/10"></div>
+        </div>
       </div>
 
-      {/* Background Decorative */}
-      <div className="absolute inset-0 bg-noir -z-10" />
+      {/* Side Label */}
+      <div className="absolute right-12 bottom-12 hidden lg:flex items-center space-x-8 -rotate-90 origin-right">
+        <span className="text-[9px] uppercase tracking-[0.5em] text-bone/20 font-bold whitespace-nowrap">HOUSE OF UMBRA © 2024</span>
+        <div className="w-48 h-[1px] bg-white/10"></div>
+      </div>
+
+      <motion.div style={{ opacity }} className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(20,20,20,1)_0%,rgba(5,5,5,1)_100%)] -z-20" />
     </section>
   );
 };
@@ -190,35 +201,53 @@ const Hero = () => {
 const ProductCard = ({ product }: { product: typeof PRODUCTS[0] }) => {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="group relative"
+      transition={{ duration: 0.6 }}
+      className="group relative brutalist-border p-3 bg-onyx/40 backdrop-blur-sm"
     >
-      <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-onyx border border-white/5 group-hover:border-white/20 transition-colors duration-500">
-        <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
+      <div className="relative aspect-[3/4] overflow-hidden mb-5 bg-noir grayscale group-hover:grayscale-0 transition-all duration-700">
         <img 
           src={product.image} 
           alt={product.name} 
-          className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:opacity-80 grayscale group-hover:grayscale-0"
+          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute top-4 left-4 bg-noir/40 backdrop-blur-sm px-3 py-1 text-[9px] uppercase tracking-[0.2em] border border-white/10">
-          {product.tag}
-        </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-onyx/90 backdrop-blur-md border-t border-white/10">
-           <button className="w-full py-3 text-[10px] uppercase tracking-widest font-bold bg-bone text-noir hover:bg-white/90 transition-colors">
-            Add to Bag
-          </button>
+        
+        {/* Technical Overlay */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-4 pointer-events-none">
+          <div className="flex justify-between items-start">
+            <span className="text-[8px] tracking-[0.2em] font-mono text-white/40 uppercase bg-black/80 px-2 py-1">SPEC_0{product.id}</span>
+            <div className="w-2 h-2 bg-white rounded-full' animate-pulse" />
+          </div>
+          <div className="text-[10px] space-y-1">
+             <div className="flex justify-between border-b border-white/10 pb-1">
+               <span className="text-white/40 uppercase tracking-tighter">Composition</span>
+               <span className="text-white font-medium italic">100% Cotton</span>
+             </div>
+             <div className="flex justify-between">
+               <span className="text-white/40 uppercase tracking-tighter">Weight</span>
+               <span className="text-white font-medium italic text-right leading-none group-hover:block transition-all delay-100">450 GSM</span>
+             </div>
+          </div>
         </div>
       </div>
-      <div className="flex justify-between items-start px-1">
-        <div>
-          <p className="text-[9px] uppercase tracking-[0.3em] text-bone/40 mb-2">{product.category}</p>
-          <h3 className="font-serif text-lg tracking-tight group-hover:italic transition-all">{product.name}</h3>
+
+      <div className="flex flex-col space-y-3">
+        <div className="flex justify-between items-start">
+          <h3 className="font-serif text-lg leading-tight tracking-tight uppercase group-hover:italic transition-all duration-300">{product.name}</h3>
+          <span className="text-[10px] font-mono text-white/40 mt-1">[{product.tag}]</span>
         </div>
-        <p className="font-sans text-xs tracking-widest font-medium text-bone/60 mt-1">{product.price}</p>
+        
+        <div className="flex justify-between items-center pt-2 border-t border-white/5 opacity-60">
+          <span className="text-[9px] uppercase tracking-[0.3em] font-bold">{product.category}</span>
+          <span className="text-[10px] tracking-widest font-light">{product.price}</span>
+        </div>
+        
+        <button className="w-full py-3 mt-2 bg-white text-noir text-[9px] uppercase tracking-[0.3em] font-bold opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 shadow-lg">
+          Add to Archive
+        </button>
       </div>
     </motion.div>
   );
@@ -394,35 +423,49 @@ export default function App() {
           </div>
         </section>
 
-        {/* Minimalist Bento-ish Grid */}
+        {/* Editorial Collection Grid */}
         <section className="py-32 bg-onyx">
-           <div className="container mx-auto px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[800px]">
+           <div className="container mx-auto px-12">
+              <div className="editorial-grid h-auto lg:h-[900px] gap-6">
                 <motion.div 
-                  whileHover={{ scale: 0.98 }}
-                  className="lg:col-span-2 relative overflow-hidden group rounded-sm"
+                  whileHover={{ scale: 0.99 }}
+                  className="col-span-12 lg:col-span-8 relative overflow-hidden group brutalist-border"
                 >
-                  <img src="https://images.unsplash.com/photo-1549439602-43ebca2327af?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" alt="Collection" referrerPolicy="no-referrer" />
-                  <div className="absolute inset-0 p-12 flex flex-col justify-end">
-                    <span className="text-xs uppercase tracking-widest mb-4">Limited Edition</span>
-                    <h3 className="text-4xl lg:text-6xl font-serif tracking-tighter mb-6">The Occult <br /> Series</h3>
-                    <button className="w-fit border border-bone/20 px-8 py-3 text-xs uppercase tracking-widest hover:bg-bone hover:text-noir transition-all">Explore Drop</button>
+                  <img src="https://images.unsplash.com/photo-1549439602-43ebca2327af?auto=format&fit=crop&q=80&w=1600" className="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" alt="Collection" referrerPolicy="no-referrer" />
+                  <div className="absolute inset-0 p-16 flex flex-col justify-end">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <span className="text-[10px] uppercase tracking-[0.4em] text-white/60">COLLECTION_01</span>
+                      <div className="w-8 h-[1px] bg-white/20"></div>
+                    </div>
+                    <h3 className="text-6xl lg:text-8xl font-serif tracking-tighter mb-8 italic">The Occult <br /> Archive</h3>
+                    <div className="flex space-x-8">
+                       <button className="brutalist-border px-10 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all">Explore Entry</button>
+                       <div className="hidden md:flex flex-col justify-center">
+                          <span className="text-[9px] uppercase tracking-[0.2em] opacity-40">Limited Run // 100 Pieces Only</span>
+                       </div>
+                    </div>
                   </div>
                 </motion.div>
                 
-                <div className="grid grid-rows-2 gap-6">
-                  <motion.div whileHover={{ scale: 0.98 }} className="relative overflow-hidden group rounded-sm">
-                    <img src="https://images.unsplash.com/photo-1554568212-3c1696996a24?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" alt="Collection" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif tracking-tight mb-4">Minimalist Basics</h3>
-                      <ChevronRight size={24} className="group-hover:translate-x-2 transition-transform opacity-60" />
+                <div className="col-span-12 lg:col-span-4 grid grid-rows-2 gap-6">
+                  <motion.div whileHover={{ scale: 0.99 }} className="relative overflow-hidden group brutalist-border bg-noir">
+                    <img src="https://images.unsplash.com/photo-1554568212-3c1696996a24?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover grayscale brightness-[0.3] group-hover:scale-105 transition-transform duration-1000" alt="Collection" referrerPolicy="no-referrer" />
+                    <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                       <div className="text-[9px] uppercase tracking-[0.4em] opacity-40">Technical Apparel</div>
+                       <div>
+                        <h3 className="text-3xl font-serif tracking-tight mb-4 lowercase">minimalist basics</h3>
+                        <ChevronRight size={32} strokeWidth={1} className="group-hover:translate-x-2 transition-transform opacity-60" />
+                       </div>
                     </div>
                   </motion.div>
-                  <motion.div whileHover={{ scale: 0.98 }} className="relative overflow-hidden group rounded-sm">
-                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover grayscale brightness-50 group-hover:scale-105 transition-transform duration-1000" alt="Collection" referrerPolicy="no-referrer" />
-                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                      <h3 className="text-2xl font-serif tracking-tight mb-4">Haus Accessories</h3>
-                      <ChevronRight size={24} className="group-hover:translate-x-2 transition-transform opacity-60" />
+                  <motion.div whileHover={{ scale: 0.99 }} className="relative overflow-hidden group brutalist-border bg-noir">
+                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover grayscale brightness-[0.3] group-hover:scale-105 transition-transform duration-1000" alt="Collection" referrerPolicy="no-referrer" />
+                    <div className="absolute inset-0 p-10 flex flex-col justify-between">
+                       <div className="text-[9px] uppercase tracking-[0.4em] opacity-40">Artifacts</div>
+                       <div>
+                        <h3 className="text-3xl font-serif tracking-tight mb-4 lowercase">haus objects</h3>
+                        <ChevronRight size={32} strokeWidth={1} className="group-hover:translate-x-2 transition-transform opacity-60" />
+                       </div>
                     </div>
                   </motion.div>
                 </div>
